@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "math.h"
 #include "string.h"
+#include "stdlib.h"
 
 // Structure Definition
 	int numOfDigits(unsigned int num);
@@ -39,7 +40,7 @@ int numOfDigits(unsigned int num){
 unsigned int hcf(unsigned int num1, unsigned int num2){
 	int max = 1, i;
 	for (i = 2; i <= abs(num2 - num1);  ++i){
-		if ((num1 % i ==  num2 % i) == 0){
+		if (num1 % i == 0 && num2 % i == 0){
 			if (i > max)
 				max = i;
 		}
