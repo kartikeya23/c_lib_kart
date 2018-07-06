@@ -10,6 +10,7 @@
 	unsigned int comb(int n, int r);
 	unsigned int lcm(unsigned int num1, unsigned int num2);
 	unsigned int hcf(unsigned int num1, unsigned int num2);
+	void printPascal(int n);
 
 unsigned int factorial(int n){
 	//Using recursion, finds the factorial of the number
@@ -50,4 +51,25 @@ unsigned int hcf(unsigned int num1, unsigned int num2){
 
 unsigned int lcm(unsigned int num1, unsigned int num2){
 	return num1 * num2 / hcf(num1, num2);
+}
+
+void printPascal(int n){
+	int x, i;
+	long int pascal[n+1][n+1];
+	for (i = 0; i <= n; ++i){
+		if (i == 0)
+			pascal[i][0] = 1;
+		else{
+			pascal[i][0] = pascal[i][i] = 1;
+			for (x = 1; x < i; ++x)
+				pascal[i][x] = pascal[i-1][x] + pascal[i-1][x-1];
+		}
+	}
+	for (i = 0; i <= n; ++i){
+		for (x = 0; x <= i; ++x){
+			printf("%d ", pascal[i][x]);
+		}
+		printf("\n");
+	}
+	return;
 }
