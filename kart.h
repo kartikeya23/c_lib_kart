@@ -11,6 +11,7 @@
 	unsigned int lcm(unsigned int num1, unsigned int num2);
 	unsigned int hcf(unsigned int num1, unsigned int num2);
 	void printPascal(int n);
+	long double * quadtraticRoots(int a, int b, int c);
 
 unsigned int factorial(int n){
 	//Using recursion, finds the factorial of the number
@@ -40,8 +41,8 @@ int numOfDigits(unsigned int num){
 
 unsigned int hcf(unsigned int num1, unsigned int num2){
 	int max = 1, i;
-	for (i = 2; i <= abs(num2 - num1);  ++i){
-		if (num1 % i == 0 && num2 % i == 0){
+	for (i = 2; i <= fabs(num2 - num1);  ++i){
+		if ((num1 % i ==  num2 % i) == 0){
 			if (i > max)
 				max = i;
 		}
@@ -72,4 +73,19 @@ void printPascal(int n){
 		printf("\n");
 	}
 	return;
-}
+
+long double * quadraticRoots(int a, int b, int c){  // ax^2 + bx + c = 0
+	static long double zeros[3] = {0, 0, 0};
+	long double discriminant = pow(b, 2) - 4 * a * c;
+	if (discriminant < 0){
+		zeros[2] = 1;
+		discriminant *= -1;
+	}
+	zeros[0] = -1 * b / (2 * a);
+	zeros[1] = sqrt(discriminant) / (2 * a);
+	return zeros;
+	/*
+		the final roots can be found using zeros[0] +- zeros[1] 
+		the value stored in zeros[3] will denote if the roots were imaginary
+			if zeros[3] = 1, then the roots are zeros[0] +- (zeros[1] * i)
+	*/
